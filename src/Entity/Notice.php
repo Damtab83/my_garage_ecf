@@ -3,11 +3,15 @@
 namespace App\Entity;
 
 use App\Repository\NoticeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: NoticeRepository::class)]
+#[Vich\Uploadable]
 class Notice
 {
     #[ORM\Id]
@@ -32,13 +36,11 @@ class Notice
     #[ORM\Column]
     #[Assert\NotNull()]
     #[Assert\Positive()]
-    #[Assert\LessThan(100)]
     private ?int $kilometer = null;
 
     #[ORM\Column]
     #[Assert\NotNull()]
     #[Assert\Positive()]
-    #[Assert\LessThan(1000)]
     private ?int $price = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
@@ -48,6 +50,15 @@ class Notice
     #[ORM\Column]
     #[Assert\NotNull()]
     private ?\DateTimeImmutable $createdAt = null;
+
+    #[ORM\OneToMany(mappedBy: 'notice', targetEntity: NoticeImage::class, orphanRemoval: true, cascade: ['persist'])]
+    private Collection $noticeImages;
+
+    public function __construct()
+    {
+        $this->noticeImages = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
@@ -134,6 +145,41 @@ class Notice
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->brand;
+    }
+
+    /**
+     * @return Collection<int, NoticeImage>
+     */
+    public function getNoticeImages(): Collection
+    {
+        return $this->noticeImages;
+    }
+
+    public function addNoticeImage(NoticeImage $noticeImage): static
+    {
+        if (!$this->noticeImages->contains($noticeImage)) {
+            $this->noticeImages->add($noticeImage);
+            $noticeImage->setNotice($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNoticeImage(NoticeImage $noticeImage): static
+    {
+        if ($this->noticeImages->removeElement($noticeImage)) {
+            // set the owning side to null (unless already changed)
+            if ($noticeImage->getNotice() === $this) {
+                $noticeImage->setNotice(null);
+            }
+        }
 
         return $this;
     }

@@ -76,7 +76,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        $roles[] = 'ROLE_USER';
+        $roles[] = 'ROLE_SELLER';
 
         return array_unique($roles);
     }
@@ -142,6 +142,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->fullname = $fullname;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return (string) $this->fullname;
     }
 
 }
