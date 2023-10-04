@@ -8,6 +8,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
@@ -27,29 +29,16 @@ class ServiceCrudController extends AbstractCrudController
         ->setPaginatorPageSize(10);
     }
 
-    
     public function configureFields(string $pageName): iterable
     {
         return [
+            IdField::new('id')
+                ->hideOnIndex(),
             TextField::new('title'),
             TextEditorField::new('description'),
             CollectionField::new('serviceImages')
-            ->setEntryType(ServiceImageType::class),
-            // DateTimeField::new('updated_at'),
-            
-
+            ->setEntryType(ServiceImageType::class)
+            ->hideOnIndex(),
         ];
-        // if ($pageName === Crud::PAGE_NEW || $pageName === Crud::PAGE_EDIT) {
-        //     $fields[] = DateTimeField::new('updated_at')
-        //         ->setFormType(\Symfony\Component\Form\Extension\Core\Type\DateTimeType::class)
-        //         ->setFormTypeOptions([
-        //             'input' => 'datetime_immutable',
-        //         ]);
-        // } else {
-        //     $fields[] = DateTimeField::new('updated_at');
-        // }
-    
-        // return $fields;
     }
-    
 }

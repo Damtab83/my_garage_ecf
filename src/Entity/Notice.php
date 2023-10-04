@@ -36,6 +36,7 @@ class Notice
     #[ORM\Column]
     #[Assert\NotNull()]
     #[Assert\Positive()]
+    #[Assert\LessThan(999999)]
     private ?int $kilometer = null;
 
     #[ORM\Column]

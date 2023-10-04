@@ -9,6 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
@@ -33,12 +34,17 @@ class NoticeCrudController extends AbstractCrudController
         $fields = [
             TextField::new('brand'),
             TextField::new('model'),
-            TextEditorField::new('description'),
+            TextEditorField::new('description')
+            ->hideOnIndex(),
             CollectionField::new('noticeImages')
+            ->hideOnIndex()
             ->setEntryType(NoticeImageType::class),
-            IntegerField::new('price'),
+            MoneyField::new('price')
+            ->setCurrency('EUR'),
             IntegerField::new('kilometer'),
-            DateTimeField::new('release_date'),
+            DateTimeField::new('release_date')
+            ->hideOnIndex()
+            ->setDisabled(true),
             
 
         ];
@@ -47,9 +53,11 @@ class NoticeCrudController extends AbstractCrudController
                 ->setFormType(\Symfony\Component\Form\Extension\Core\Type\DateTimeType::class)
                 ->setFormTypeOptions([
                     'input' => 'datetime_immutable',
-                ]);
+                ])
+                ->hideOnIndex();
         } else {
-            $fields[] = DateTimeField::new('created_at');
+            $fields[] = DateTimeField::new('created_at')
+            ->hideOnIndex();
         }
     
         return $fields;
