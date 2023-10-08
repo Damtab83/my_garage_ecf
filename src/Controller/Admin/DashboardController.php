@@ -19,7 +19,7 @@ class DashboardController extends AbstractDashboardController
     {
 
         // $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
-        // return $this->redirect($adminUrlGenerator->setController(OneOfYourCrudController::class)->generateUrl());
+        // return $this->redirect($adminUrlGenerator->setController(ContactCrudController::class)->generateUrl());
 
         return $this->render('/admin/adminDashboard.html.twig');
     }

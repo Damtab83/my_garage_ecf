@@ -17,27 +17,26 @@ class ContactController extends AbstractController
     {
         $contact = new Contact();
 
-        //Gestion du sujet du formulaire
+        //Gestion du subject du formulaire
         $source = $request->query->get('source');
-        $sujet = '';
+        $subject = '';
 
         if ($source === 'service') {
-            $sujet = 'Demande de service à l\'atelier';
+            $subject = 'Demande de service à l\'atelier';
         } elseif ($source === 'notice') {
-            $sujet = 'Demande d\'informations sur un véhicule en vente';
+            $subject = 'Demande d\'informations sur un véhicule en vente';
         } else {
-            'Demande de renseignement';
+            $subject = 'Demande de renseignement';
         }
 
         //Création du formulaire
-        $form = $this->createForm(ContactType::class, $contact, ['sujet' => $sujet]);
-
+        $form = $this->createForm(ContactType::class, $contact, ['subject' => $subject]);
+        
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $contact = $form->getData();
 
             $manager->persist($contact);
-
             $manager->flush();
 
             $this->addFlash(

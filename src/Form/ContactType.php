@@ -12,6 +12,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
+use Karser\Recaptcha3Bundle\Form\Recaptcha3Type;
+use Karser\Recaptcha3Bundle\Validator\Constraints\Recaptcha3;
 
 class ContactType extends AbstractType
 {
@@ -33,17 +35,19 @@ class ContactType extends AbstractType
                 ]
             ])
             ->add('subject', TextType::class, [
+                'data' => $options['subject'],
+                'disabled' => true,
                 'attr' => [
                     'class' => 'form-control',
                     'min' => 2,
                     'max' => 180,
                 ],
-                'label' => 'Sujet',
+                'label' => 'sujet',
                 'label_attr' => [
                     'class' => 'form-label mt-4'
                 ],
                 'constraints' => [
-                    new Assert\Length(['min' => 0, 'max' => 255]),
+                    new Assert\NotBlank(),
                 ]
             ])
             ->add('email', EmailType::class, [
@@ -77,8 +81,8 @@ class ContactType extends AbstractType
             ->add('phoneNumber', TelType::class, [
                 'attr' => [
                     'class' => 'form-control',
-                    'min' => 10,
-                    'max' => 10,
+                    'min' => 9,
+                    'max' => 12,
                 ],
                 'label' => 'Téléphone',
                 'label_attr' => [
@@ -86,6 +90,10 @@ class ContactType extends AbstractType
                 ],
                 'constraints' => [
                     new Assert\NotBlank(),
+                    new Assert\Regex([
+                        'pattern' => '/^\+?[0-9]{9,10}$/',
+                        'message' => 'Please enter a valid phone number',
+                    ])
                 ]
             ])
             ->add('submit', SubmitType::class, [
@@ -94,13 +102,17 @@ class ContactType extends AbstractType
                 ],
                 'label' => 'Envoyer'
             ])
-        ;
+            ->add('captcha', Recaptcha3Type::class, [
+                'constraints' => new ReCaptcha3(),
+                'action_name' => 'contact',
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Contact::class,
+            'subject' => 'Demande de renseignement',
         ]);
     }
 }
