@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Contact;
 use App\Entity\Notice;
 use App\Entity\NoticeImage;
+use App\Entity\OpeningHours;
 use App\Entity\Opinion;
 use App\Entity\Service;
 use App\Entity\ServiceImage;
@@ -49,6 +50,9 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Demande de contacts', 'fas fa-envelope', Contact::class);
         yield MenuItem::linkToCrud('Avis clients', 'fas fa-newspaper', Opinion::class);
         yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-users', User::class)
+            // ->setPermission('ROLE_ADMIN')
+            ;
+        yield MenuItem::linkToCrud('Horaires', 'fas fa-clock', OpeningHours::class)
             // ->setPermission('ROLE_ADMIN')
             ;
         yield MenuItem::section();
