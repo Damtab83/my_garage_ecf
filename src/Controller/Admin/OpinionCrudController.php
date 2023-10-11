@@ -31,9 +31,12 @@ class OpinionCrudController extends AbstractCrudController
         return [
             IdField::new('id')
                 ->hideOnForm(),
-            TextField::new('fullname'),
-            TextEditorField::new('comment'),
+            TextField::new('fullname')
+                ->setLabel('Nom Prénom'),
+            TextEditorField::new('comment')
+                ->setLabel('Commentaire'),
             IntegerField::new('ranking')
+                ->setLabel('Notation')
                 ->hideOnIndex(),
             BooleanField::new('isValid')
                 ->setLabel('Validation'),

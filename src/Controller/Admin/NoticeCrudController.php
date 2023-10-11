@@ -32,19 +32,26 @@ class NoticeCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         $fields = [
-            TextField::new('brand'),
-            TextField::new('model'),
+            TextField::new('brand')
+                ->setLabel('Marque'),
+            TextField::new('model')
+                ->setLabel('Modèle'),
             TextEditorField::new('description')
-            ->hideOnIndex(),
+                ->setLabel('Description')
+                ->hideOnIndex(),
             CollectionField::new('noticeImages')
-            ->hideOnIndex()
-            ->setEntryType(NoticeImageType::class),
+                ->setLabel('Image')
+                ->hideOnIndex()
+                ->setEntryType(NoticeImageType::class),
             MoneyField::new('price')
-            ->setCurrency('EUR'),
-            IntegerField::new('kilometer'),
+                ->setLabel('Prix')
+                ->setCurrency('EUR'),
+            IntegerField::new('kilometer')
+                ->setLabel('Kilomètre'),
             DateTimeField::new('release_date')
-            ->hideOnIndex()
-            ->setDisabled(true),
+                ->setLabel('Date d\'immatriculation')
+                ->hideOnIndex()
+                ->setDisabled(true),
             
 
         ];
@@ -54,6 +61,7 @@ class NoticeCrudController extends AbstractCrudController
                 ->setFormTypeOptions([
                     'input' => 'datetime_immutable',
                 ])
+                ->setLabel('Date de création')
                 ->hideOnIndex();
         } else {
             $fields[] = DateTimeField::new('created_at')

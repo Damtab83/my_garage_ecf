@@ -34,11 +34,14 @@ class ServiceCrudController extends AbstractCrudController
         return [
             IdField::new('id')
                 ->hideOnIndex(),
-            TextField::new('title'),
-            TextEditorField::new('description'),
+            TextField::new('title')
+                ->setLabel('Titre du service'),
+            TextEditorField::new('description')
+                ->setLabel('Description'),
             CollectionField::new('serviceImages')
-            ->setEntryType(ServiceImageType::class)
-            ->hideOnIndex(),
+                ->setLabel('Images')
+                ->setEntryType(ServiceImageType::class)
+                ->hideOnIndex(),
         ];
     }
 }

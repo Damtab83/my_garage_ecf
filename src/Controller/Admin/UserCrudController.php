@@ -32,9 +32,12 @@ class UserCrudController extends AbstractCrudController
             IdField::new('id')
                 ->hideOnForm(),
             TextField::new('fullname')
+                ->setLabel('Nom Prénom')
                 ->setDisabled(true),
-            EmailField::new('email'),
+            EmailField::new('email')
+                ->setLabel('Email'),
             ChoiceField::new('roles')
+                ->setLabel('Statut  de l\'employé')
                 ->setLabel('Roles')
                 ->setChoices([
                     'Admin' => 'ROLE_ADMIN',
