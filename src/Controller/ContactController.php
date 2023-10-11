@@ -16,11 +16,10 @@ class ContactController extends AbstractController
     public function index(Request $request, EntityManagerInterface $manager): Response
     {
         $contact = new Contact();
-
         //Gestion du subject du formulaire
         $source = $request->query->get('source');
         $subject = '';
-
+        
         if ($source === 'service') {
             $subject = 'Demande de service à l\'atelier';
         } elseif ($source === 'notice') {
@@ -28,14 +27,18 @@ class ContactController extends AbstractController
         } else {
             $subject = 'Demande de renseignement';
         }
-
+        dump($source);
         //Création du formulaire
         $form = $this->createForm(ContactType::class, $contact, ['subject' => $subject]);
         
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            
             $contact = $form->getData();
+            $subject = $contact->getSubject();
 
+            dd($subject);
+            
             $manager->persist($contact);
             $manager->flush();
 

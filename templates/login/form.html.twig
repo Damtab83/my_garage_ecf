@@ -1,8 +1,11 @@
+{% block stylesheet %}
+    <link rel="stylesheet" href="asset\css\styles_surcharges.css">
+{% endblock %}
 <form action="{{ path('app_login') }}" method="post">
-    <label for="username">Email:</label>
+    <label for="username" class="header_text">Email:</label>
     <input type="text" id="username" name="_username" value="{{ last_username|default('')}}">
 
-    <label for="password">Password:</label>
+    <label for="password" class="header_text">Password:</label>
     <input type="password" id="password" name="_password" placeholder="********">
 
     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">

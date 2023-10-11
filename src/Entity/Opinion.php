@@ -5,9 +5,15 @@ namespace App\Entity;
 use App\Repository\OpinionRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: OpinionRepository::class)]
+#[UniqueEntity(
+    fields: ['Fullname'],
+    errorPath: 'fullname',
+    message: 'Ce Nom d\'utilisateur a déjà été utilisé pour noter le site.'
+)]
 class Opinion
 {
     #[ORM\Id]
@@ -25,13 +31,22 @@ class Opinion
 
     #[ORM\Column]
     #[Assert\NotNull()]
+    #[Assert\Positive()]
+    #[Assert\LessThan(6)]
     private ?int $ranking = null;
 
     #[ORM\Column]
-    private ?bool $isValid = null;
+    private ?bool $isValid = false;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
+
+    private ?float $average = null;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTimeImmutable();   
+    }
 
     public function getId(): ?int
     {
@@ -101,5 +116,25 @@ class Opinion
     public function __toString(): string
     {
         return $this->Fullname;
+    }
+
+    public function getAverage()
+    {
+        $ranking = $this->ranking;
+
+        if ($ranking->toArray() === []) {
+            $this->average = null;
+            return $this->average;
+        }
+        $total = 0;
+
+        foreach ($ranking as $rank)
+        {
+            $total += $rank->getRanking();
+        }
+
+        $this->average = $total / count($ranking);
+
+        return $this->average;
     }
 }

@@ -36,19 +36,14 @@ class ContactType extends AbstractType
             ])
             ->add('subject', TextType::class, [
                 'data' => $options['subject'],
-                'disabled' => true,
+                'disabled' => 'disabled',
                 'attr' => [
                     'class' => 'form-control',
-                    'min' => 2,
-                    'max' => 180,
                 ],
                 'label' => 'sujet',
                 'label_attr' => [
                     'class' => 'form-label mt-4'
                 ],
-                'constraints' => [
-                    new Assert\NotBlank(),
-                ]
             ])
             ->add('email', EmailType::class, [
                 'attr' => [
