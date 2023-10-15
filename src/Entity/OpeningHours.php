@@ -24,7 +24,12 @@ class OpeningHours
     private ?\DateTimeInterface $closeTime = null;
 
 
-    public function __construct()
+    // public function __construct()
+    // {
+    //     $this->dayOfWeek = new \DateTimeImmutable();
+    // }
+
+    public function updateDayOfWeek()
     {
         $this->dayOfWeek = new \DateTimeImmutable();
     }
