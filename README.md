@@ -26,7 +26,13 @@ cd my_garage_ecf
 composer install
 ```
 
-Après instalation vous pourrez ouvrir le projet sur votre navigateur  
+**Création d'un Administrateur**
+```
+php bin/console app:create-admin
+```
+Vous remplissez le formulaire...
+
+Après instalation et configuration, vous pourrez ouvrir le projet sur votre navigateur  
 à l'adresse : [localhost](https://127.0.0.1:8000)
 
 -----------------------------
@@ -54,5 +60,11 @@ git clone https://github.com/Damtab83/my_garage_ecf.git
 cd my_garage_ecf
 composer install
 ```
-After installation you can open the project on your browser
+**Create Administrator**
+```
+php bin/console app:create-admin
+```
+Complete form...
+
+After installation and configuration you can open the project on your browser
 at : [localhost](https://127.0.0.1:8000)
