@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ContactController extends AbstractController
 {
-    #[Route('/contact', name: 'app_contact')]
+    #[Route('/contact', name: 'app_contact', methods: ['GET', 'POST'])]
     public function index(Request $request, EntityManagerInterface $manager): Response
     {
         $contact = new Contact();
@@ -27,7 +27,6 @@ class ContactController extends AbstractController
         } else {
             $subject = 'Demande de renseignement';
         }
-        dump($source);
         //Création du formulaire
         $form = $this->createForm(ContactType::class, $contact, ['subject' => $subject]);
         
@@ -36,8 +35,6 @@ class ContactController extends AbstractController
             
             $contact = $form->getData();
             $subject = $contact->getSubject();
-
-            dd($subject);
             
             $manager->persist($contact);
             $manager->flush();
