@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block opening_hours %}
+    {% set openingHours = app.request.attributes.get('openingHours') %}
+    <pre>
+        Nous vous recevons du: 
+        Lundi au Vendredi
+        {# {{ openingHours[0].openTime|date('H:i') }} - {{ openingHours[0].closeTime|date('H:i') }} / {{ openingHours[0].openTimeAfternoon|date('H:i') }} - {{ openingHours[0].closeTimeAfternoon|date('H:i') }} #}
+        {# dd(openingHours); #}
+    </pre>
+{% endblock %}

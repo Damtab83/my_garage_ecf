@@ -23,11 +23,17 @@ class OpeningHours
     #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?\DateTimeInterface $closeTime = null;
 
+    #[ORM\Column(type: Types::TIME_MUTABLE)]
+    private ?\DateTimeInterface $openTimeAfternoon = null;
 
-    // public function __construct()
-    // {
-    //     $this->dayOfWeek = new \DateTimeImmutable();
-    // }
+    #[ORM\Column(type: Types::TIME_MUTABLE)]
+    private ?\DateTimeInterface $closeTimeAfternoon = null;
+
+
+    public function __construct()
+    {
+        $this->dayOfWeek = new \DateTimeImmutable();
+    }
 
     public function updateDayOfWeek()
     {
@@ -71,6 +77,30 @@ class OpeningHours
     public function setCloseTime(\DateTimeInterface $closeTime): static
     {
         $this->closeTime = $closeTime;
+
+        return $this;
+    }
+
+    public function getOpenTimeAfternoon(): ?\DateTimeInterface
+    {
+        return $this->openTimeAfternoon;
+    }
+
+    public function setOpenTimeAfternoon(\DateTimeInterface $openTimeAfternoon): static
+    {
+        $this->openTimeAfternoon = $openTimeAfternoon;
+
+        return $this;
+    }
+
+    public function getCloseTimeAfternoon(): ?\DateTimeInterface
+    {
+        return $this->closeTimeAfternoon;
+    }
+
+    public function setCloseTimeAfternoon(\DateTimeInterface $closeTimeAfternoon): static
+    {
+        $this->closeTimeAfternoon = $closeTimeAfternoon;
 
         return $this;
     }

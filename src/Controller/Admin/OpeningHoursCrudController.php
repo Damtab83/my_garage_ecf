@@ -43,6 +43,8 @@ class OpeningHoursCrudController extends AbstractCrudController
             DateField::new('dayOfWeek'),
             TimeField::new('openTime'),
             TimeField::new('closeTime'),
+            TimeField::new('openTimeAfternoon'),
+            TimeField::new('closeTimeAfternoon'),
         ];
     }
     
