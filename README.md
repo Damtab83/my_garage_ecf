@@ -25,6 +25,10 @@ git clone https://github.com/Damtab83/my_garage_ecf.git
 cd my_garage_ecf
 composer install
 ```
+Une fois tous les fichiers installés, lancer le serveur:
+```
+composer server:start
+```
 
 **Création d'un Administrateur**
 ```
@@ -60,6 +64,12 @@ git clone https://github.com/Damtab83/my_garage_ecf.git
 cd my_garage_ecf
 composer install
 ```
+
+Once all files are installed, start the server:
+```
+composer server:start
+```
+
 **Create Administrator**
 ```
 php bin/console app:create-admin
