@@ -30,6 +30,7 @@ class OpeningHoursCrudController extends AbstractCrudController
         return $crud
             ->setTimeFormat('HH:mm')
             ->setPageTitle('index', 'Horaires du Garage')
+            ->showEntityActionsInlined()
             ->setPaginatorPageSize(1)
             ->renderContentMaximized();
     }

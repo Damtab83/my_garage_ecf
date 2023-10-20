@@ -13,6 +13,7 @@
 		{% for image in service.serviceImages %}
             <img src="{{ vich_uploader_asset(image, 'file') }}" class="d-block w-100" alt="{{ image.name }}">
         {% endfor %}
+		
 		<div class="card-body">
 			<p class="card-text">{{ service.description | striptags }}</p>
 		</div>

@@ -24,6 +24,7 @@ class ServiceCrudController extends AbstractCrudController
         ->setEntityLabelInSingular('service')
         ->setEntityLabelInPlural('services')
         ->setPageTitle('index', 'Liste de services')
+        ->showEntityActionsInlined()
         ->setPaginatorPageSize(10);
     }
 

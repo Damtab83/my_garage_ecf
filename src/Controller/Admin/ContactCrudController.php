@@ -33,7 +33,8 @@ class ContactCrudController extends AbstractCrudController
     {
         return$crud
             ->setPageTitle('index', 'Liste des demandes de contacts')
-            ->setPaginatorPageSize(10);
+            ->setPaginatorPageSize(10)
+            ->showEntityActionsInlined();
     }
 
     

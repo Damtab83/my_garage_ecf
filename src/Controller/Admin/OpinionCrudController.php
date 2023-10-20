@@ -33,6 +33,7 @@ class OpinionCrudController extends AbstractCrudController
     {
         return$crud
             ->setPageTitle('index', 'Liste des avis clients')
+            ->showEntityActionsInlined()
             ->setPaginatorPageSize(10);
     }
 

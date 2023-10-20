@@ -176,7 +176,6 @@ class Notice
     public function removeNoticeImage(NoticeImage $noticeImage): static
     {
         if ($this->noticeImages->removeElement($noticeImage)) {
-            // set the owning side to null (unless already changed)
             if ($noticeImage->getNotice() === $this) {
                 $noticeImage->setNotice(null);
             }

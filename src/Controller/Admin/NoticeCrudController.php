@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
@@ -26,6 +27,7 @@ class NoticeCrudController extends AbstractCrudController
             ->setEntityLabelInSingular('annonce')
             ->setEntityLabelInPlural('annonces')
             ->setPageTitle('index', 'Liste des annonces')
+            ->showEntityActionsInlined()
             ->setPaginatorPageSize(20);
     }
     
@@ -36,22 +38,24 @@ class NoticeCrudController extends AbstractCrudController
                 ->setLabel('Marque'),
             TextField::new('model')
                 ->setLabel('Modèle'),
-            TextEditorField::new('description')
+            TextareaField::new('description')
                 ->setLabel('Description')
-                ->hideOnIndex(),
+                ->hideOnIndex()
+                ,
             CollectionField::new('noticeImages')
                 ->setLabel('Image')
                 ->hideOnIndex()
                 ->setEntryType(NoticeImageType::class),
             MoneyField::new('price')
                 ->setLabel('Prix')
-                ->setCurrency('EUR'),
+                ->setCurrency('EUR')
+                ->setNumDecimals(0)
+                ,
             IntegerField::new('kilometer')
                 ->setLabel('Kilomètre'),
             DateTimeField::new('release_date')
                 ->setLabel('Date d\'immatriculation')
-                ->hideOnIndex()
-                ->setDisabled(true),
+                ->hideOnIndex(),
             
 
         ];
@@ -62,7 +66,8 @@ class NoticeCrudController extends AbstractCrudController
                     'input' => 'datetime_immutable',
                 ])
                 ->setLabel('Date de création')
-                ->hideOnIndex();
+                ->hideOnIndex()
+                ->setDisabled(true);
         } else {
             $fields[] = DateTimeField::new('created_at')
             ->hideOnIndex();
