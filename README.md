@@ -24,10 +24,13 @@ Ce projet a été conçu dans le cadre du Titre Professionnel de Dévoleppeur We
 git clone https://github.com/Damtab83/my_garage_ecf.git
 cd my_garage_ecf
 composer install
+npm install
 ```
-Une fois tous les fichiers installés, lancer le serveur:
+Une fois tous les fichiers installés, lancer le serveur,
+Ainsi que le webpack pour le rendu:
 ```
 composer server:start
+npm run watch
 ```
 
 **Création d'un Administrateur**
@@ -63,9 +66,11 @@ This project was designed as part of the Professional Title of Web and Mobile We
 git clone https://github.com/Damtab83/my_garage_ecf.git
 cd my_garage_ecf
 composer install
+npm install
 ```
 
-Once all files are installed, start the server:
+Once all files are installed, start the server,
+And webpack for design:
 ```
 composer server:start
 ```
