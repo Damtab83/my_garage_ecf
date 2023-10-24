@@ -1,0 +1,61 @@
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+}
+
+.numberVal input[type="number"] {
+    width: 80px;
+    height: 30px;
+    background: #fff;
+    border: 1px solid #ddd;
+    font-size: 15px;
+    font-weight: 700;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.container input[type="number"]::-webkit-outer-spin-button
+.container input[type="number"]::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+}
+
+.container .range-slider {
+    position: relative;
+    width: 400px;
+    height: 5px;
+    background: #ddd;
+    outline: none;
+    top: 1px;
+    margin: 10px;
+}
+
+.container .range-slider .progress {
+    left: 25%;
+    right: 25%;
+    height: 100%;
+    background: #17a288;
+    border-radius: 20px;
+    position: absolute;
+}
+
+.container .range-slider input[type="range"] {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    width: 101%;
+    -webkit-appearance: none;
+    pointer-events: none;
+    background: none;
+    outline: none;
+}
+
+.container .range-slider input::-webkit-slider-thumb {
+    pointer-events: auto;
+    -webkit-apparence: none;
+    width: 17px;
+    height: 17px;
+    background: #17a288;
+    border-radius: 50px;
+}

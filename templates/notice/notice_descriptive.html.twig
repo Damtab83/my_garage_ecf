@@ -73,7 +73,7 @@
                 <h2 class="fw-bolder">{{ notice.brand }}</h2>
                 <h3>{{ notice.model }}</h3>
                 <div class="d-flex align-items-end justify-content-around bg-primary my-4 py-2 text-light rounded">
-                    <h4>{{ (notice.price / 100) }} €</h4>
+                    <h4>{{ ((notice.price) / 100) | number_format(0, ',', ' ') }} €</h4>
                     <h4>{{ notice.kilometer }} Km</h4>
                     <h4>{{ notice.releaseDate|date("Y")  }}</h4>
                 </div>
