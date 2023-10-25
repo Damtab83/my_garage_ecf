@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Liste des Avis{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+    {% for opinion in opinions %}
+        {% if opinion.isValid is same as (true) %}
+            <div class="card bg-light m-3" style="max-width: 20rem;">
+                <div class="card-header">
+                    {{ opinion.fullname }}
+                    <small>Publié le {{ opinion.createdAt|date("d-m-Y") }}</small>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">Light card title</h4>
+                    <p class="card-text">{{ opinion.comment }}</p>
+                </div>
+                <div class="card-footer text-muted">
+                    {{ opinion.ranking }} / 5  ⭐
+                </div>
+            </div>
+        {% endif %}
+             
+    {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

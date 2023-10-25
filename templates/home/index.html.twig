@@ -9,14 +9,46 @@
     </div>
 {% endfor %}
 
+<div class="container">
+    <h1>GARAGE PARROT</h1>
+    <div class="row">
+        <div class="col-md-8">
+            <img src="{{ asset('images/contentImg/home_garage.png') }}" alt="home_Garage" width="80%">
+        </div>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        <div class="col-md-3 rounded">
+            <div class="row border border-success rounded m-1 bg-light">
+                
+                <div class="col-md-12 d-flex justify-content-center align-items-center fs-4 rounded-circle">
+                    {{ average_rating|number_format(1) }} ⭐
+                </div>
+            </div>
+            <div class"row bg-info border border-info">
+                {% if latest_opinion %}
+                    <div class="card border-info my-3" style="max-width: 20rem;">
+                        <div class="card-header">{{ latest_opinion.fullname }}</div>
+                        <div class="card-body">
+                            <p class="card-text">{{ latest_opinion.comment }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <p class="card-text"><small>{{ latest_opinion.createdAt|date("d-m-Y") }}</small></p>
+                        </div>
+                    </div>
+                {% else %}
+                    <p>Aucun avis disponible pour le moment.</p>
+                {% endif %}
+            <div class="row">
+                <div class="col-md-12 d-flex justify-content-around">
+                    <a href="{{ path('app_opinion') }}">Votre avis</a>
+                    <a href="{{ path('app_all-opinions') }}">tous les avis</a>
+                </div>
+            </div>
+            </div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/my_garage_ecf/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/my_garage_ecf/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul>
+        </div>
+    
+    </div>
+
 </div>
+
 {% endblock %}

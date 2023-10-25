@@ -6,9 +6,8 @@
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
-            {# <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.2/cerulean/bootstrap.min.css" integrity="sha512-EKyrNi3+szgGslyi2kYzcYLwnBSt4XrnamWGiclaRkqsriEl+e4EmyNFAN/LoVXV8ESLxAQ7/cFfrX4rML0h2A==" crossorigin="anonymous" referrerpolicy="no-referrer" /> #}
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY">
-            {# <link rel="stylesheet" href="{{ asset('asset/css/styles.css') }}"> #}
+            <link rel="stylesheet" href="{{ asset('asset/css/styles.css') }}">   
         {% endblock %}
 
         {% block javascripts %}
@@ -23,7 +22,7 @@
         {% include "partials/header.html.twig" %}    
         {% block body %}{% endblock %}
 
-
+        
         {% include 'partials/footer.html.twig'%}
     </body>
 </html>

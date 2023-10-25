@@ -120,20 +120,20 @@ class Opinion
 
     public function getAverage()
     {
-        $ranking = $this->ranking;
+        $rankings[] = $this->ranking;
 
-        if ($ranking->toArray() === []) {
+        if ($rankings === []) {
             $this->average = null;
             return $this->average;
         }
         $total = 0;
 
-        foreach ($ranking as $rank)
+        foreach ($rankings as $rank)
         {
-            $total += $rank->getRanking();
+            $total += $rank;
         }
 
-        $this->average = $total / count($ranking);
+        $this->average = $total / count($rankings);
 
         return $this->average;
     }

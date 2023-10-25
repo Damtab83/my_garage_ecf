@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Opinion;
 use App\Form\OpinionType;
+use App\Repository\OpinionRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,6 +37,16 @@ class OpinionController extends AbstractController
 
         return $this->render('opinion/index.html.twig', [
             'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/all-opinions', name: 'app_all-opinions')]
+    public function show(OpinionRepository $opinionRepository)
+    {
+        $opinions = $opinionRepository->findAll();
+       
+        return $this->render('opinion/show_opinion.html.twig', [
+            'opinions' => $opinions,
         ]);
     }
 }

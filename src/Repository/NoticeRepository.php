@@ -2,10 +2,10 @@
 
 namespace App\Repository;
 
+use App\Data\SearchPrice;
 use App\Entity\Notice;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-
 /**
  * @extends ServiceEntityRepository<Notice>
  *
@@ -21,28 +21,29 @@ class NoticeRepository extends ServiceEntityRepository
         parent::__construct($registry, Notice::class);
     }
 
-//    /**
-//     * @return Notice[] Returns an array of Notice objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('n')
-//            ->andWhere('n.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('n.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * Récupère les produits en lien avec une recherche
+     * @return Notice[]
+     */
+    public function findSearch(SearchPrice $search): array
+    {
+        $query = $this
+            ->createQueryBuilder('n')
+            ->select('n');
 
-//    public function findOneBySomeField($value): ?Notice
-//    {
-//        return $this->createQueryBuilder('n')
-//            ->andWhere('n.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        if (!empty($search->min)) {
+            $query =$query
+                ->andWhere('n.price >= :min')
+                ->setParameter('min', $search->min);
+        }
+
+        if (!empty($search->max)) {
+            $query =$query
+                ->andWhere('n.price <= :max')
+                ->setParameter('max', $search->max);
+        }
+        return $query->getQuery()->getResult();
+        
+        
+    }
 }

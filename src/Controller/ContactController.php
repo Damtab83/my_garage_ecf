@@ -28,14 +28,14 @@ class ContactController extends AbstractController
             $subject = 'Demande de renseignement';
         }
         //Création du formulaire
+        $contact->setSubject($subject);
         $form = $this->createForm(ContactType::class, $contact, ['subject' => $subject]);
+    
         
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             
             $contact = $form->getData();
-            $subject = $contact->getSubject();
-            
             $manager->persist($contact);
             $manager->flush();
 
