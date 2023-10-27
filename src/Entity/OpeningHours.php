@@ -37,7 +37,8 @@ class OpeningHours
 
     public function updateDayOfWeek()
     {
-        $this->dayOfWeek = new \DateTimeImmutable();
+        $currentDate = new \DateTimeImmutable();
+        $this->dayOfWeek = $currentDate;
     }
 
     public function getId(): ?int

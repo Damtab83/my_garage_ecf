@@ -1,11 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block opening_hours %}
-    {% set openingHours = app.request.attributes.get('openingHours') %}
-    <pre>
-        Nous vous recevons du: 
-        Lundi au Vendredi
-        {# {{ openingHours[0].openTime|date('H:i') }} - {{ openingHours[0].closeTime|date('H:i') }} / {{ openingHours[0].openTimeAfternoon|date('H:i') }} - {{ openingHours[0].closeTimeAfternoon|date('H:i') }} #}
-        {# dd(openingHours); #}
-    </pre>
+{% block tile %}Informations{% endblock %}
+
+{% block body %}
+<div class="container">
+<h1 class="text-center text-decoration-underline mt-4">Heures d'ouverture du Garage</h1>
+    <h2 class="fs-3 mt-5 text-center">
+        Horaire du jour: 
+    </h2>
+    <h3 class="fs-3 my-5 text-center">            
+    {% for openingHour in openingHours %}
+    {% if openingHour.dayOfWeek|date("l") == 'Saturday' or openingHour.dayOfWeek|date("l") == 'Sunday' %}
+        Le garage est fermé
+    {% else %}
+        {{ openingHour.openTime|date("H:i") }} - {{ openingHour.closeTime|date("H:i") }} / {{ openingHour.openTimeAfternoon|date("H:i") }} - {{ openingHour.closeTimeAfternoon|date("H:i") }}
+    {% endif %}
+    {% endfor %}
+    </h3>
+    <h4 class="fs-3 my-5 text-center">Nous sommes fermé les jours fériés.</h4>
+</div>
 {% endblock %}

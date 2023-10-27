@@ -14,7 +14,11 @@ class OpeningHoursController extends AbstractController
     {
         $openingHours = $openingHoursRepository->findAll();
 
-        return $this->render('partials/footer.html.twig', [
+        foreach ($openingHours as $openingHour) {
+            $openingHour->updateDayOfWeek();
+        }
+
+        return $this->render('opening_hours/index.html.twig', [
             'openingHours' => $openingHours,
         ]);
     }

@@ -41,7 +41,6 @@ class OpeningHoursCrudController extends AbstractCrudController
             IdField::new('id')
                 ->hideOnIndex()
                 ->hideOnForm(),
-            DateField::new('dayOfWeek'),
             TimeField::new('openTime'),
             TimeField::new('closeTime'),
             TimeField::new('openTimeAfternoon'),
