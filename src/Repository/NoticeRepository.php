@@ -2,8 +2,8 @@
 
 namespace App\Repository;
 
-use App\Data\SearchPrice;
 use App\Entity\Notice;
+use App\Model\Search;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 /**
@@ -25,25 +25,37 @@ class NoticeRepository extends ServiceEntityRepository
      * Récupère les produits en lien avec une recherche
      * @return Notice[]
      */
-    public function findSearch(SearchPrice $search): array
+    public function findBySearch(Search $search): array
     {
         $query = $this
-            ->createQueryBuilder('n')
-            ->select('n');
+            ->createQueryBuilder('n');
 
-        if (!empty($search->min)) {
-            $query =$query
-                ->andWhere('n.price >= :min')
-                ->setParameter('min', $search->min);
+        if(!empty($search->minPrice)) {
+            $query = $query
+                ->andWhere('n.price >= :minP')
+                ->setParameter('minP', $search->minPrice);
         }
 
-        if (!empty($search->max)) {
-            $query =$query
-                ->andWhere('n.price <= :max')
-                ->setParameter('max', $search->max);
+        if(!empty($search->maxPrice)) {
+            $query = $query
+                ->andWhere('n.price <= :maxP')
+                ->setParameter('maxP', $search->maxPrice);
         }
+        if(!empty($search->minKilometer)) {
+            $query = $query
+                ->andWhere('n.kilometer >= :minK')
+                ->setParameter('minK', $search->minKilometer);
+        }
+
+        if(!empty($search->maxKilometer)) {
+            $query = $query
+                ->andWhere('n.kilometer <= :maxK')
+                ->setParameter('maxK', $search->maxKilometer);
+        }
+
+    
+        
         return $query->getQuery()->getResult();
-        
-        
     }
+
 }

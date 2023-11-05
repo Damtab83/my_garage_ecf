@@ -1,0 +1,28 @@
+{{ form_start(form) }}
+<form>
+  <div class="d-flex justify-content-center align-items-center">
+    <div class="col-md-3 mx-3">
+      <div class="row">
+        {{ form_widget(form.minPrice) }}
+        {{ form_widget(form.maxPrice) }}
+        <div id="price-slider"></div>
+      </div>
+      <div class="row">
+        <div id="price-slider"></div>
+      </div>
+    </div>
+    <div class="col-md-3 mx-3">
+      <div class="row">
+        {{ form_widget(form.minKilometer) }}
+        {{ form_widget(form.maxKilometer) }}
+        <div id="kilometer-slider"></div>
+      </div>
+      <div class="row">
+        <div id="price-slider"></div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</form>
+{{ form_end(form) }}
+

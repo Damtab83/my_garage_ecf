@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Data\SearchPrice;
-use App\Form\SearchPriceFormType;
+use App\Model\Search;
+use App\Form\SearchType;
 use App\Repository\NoticeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,18 +14,21 @@ use Symfony\Component\Routing\Annotation\Route;
 class NoticeController extends AbstractController
 {
     #[Route('/', name: 'app_notice', methods: ['GET'])]
-    public function index(NoticeRepository $noticeRepository,Request $request): Response
+    public function index(NoticeRepository $noticeRepository, Request $request): Response
     {
-        $data = new SearchPrice();
-        $form = $this->createForm(SearchPriceFormType::class, $data);
+        $search = new Search();
+        $form = $this->createForm(SearchType::class, $search);
         $form->handleRequest($request);
-        $notices = $noticeRepository->findSearch($data);
+        
+        $notices = $noticeRepository->findBySearch($search);
        
         return $this->render('notice/index.html.twig', [
-            'notices' => $notices,
             'form' => $form->createView(),
+            'notices' => $notices,
         ]);
+        
     }
+
 
     #[Route('/{id}', name: 'app_notice_details', methods: ['GET'], requirements: ['id' => '\d+'])]
     public function details(NoticeRepository $noticeRepository, int $id): Response

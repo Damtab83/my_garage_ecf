@@ -45,9 +45,11 @@ class OpinionType extends AbstractType
             ])
             ->add('ranking', IntegerType::class, [
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'min' => 1,
+                    'max' => 5,
                 ],
-                'label' => 'Note',
+                'label' => 'Note / 5',
                 'label_attr' => [
                     'class' => 'form-label mt-4'
                 ],

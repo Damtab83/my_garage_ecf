@@ -7,20 +7,7 @@
 
 <div class="row justify-content-center">
 {% for service in services %}
-	<div class="card my-3 mx-4 col-sm-3">
-		<h3 class="card-header">{{ service.title }}</h3>
-		
-		{% for image in service.serviceImages %}
-            <img src="{{ vich_uploader_asset(image, 'file') }}" class="d-block w-100" alt="{{ image.name }}">
-        {% endfor %}
-		
-		<div class="card-body">
-			<p class="card-text">{{ service.description | striptags }}</p>
-		</div>
-		<div class="card-body">
-			<a href="{{ path('app_contact', {'source': 'service'}) }}" class="card-link">Contact</a>
-		</div>
-	</div>
+	{% include "components/_card.html.twig" %}
 {% endfor %}
 </div>
 

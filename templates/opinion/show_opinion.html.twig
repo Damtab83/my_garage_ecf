@@ -3,7 +3,7 @@
 {% block title %}Liste des Avis{% endblock %}
 
 {% block body %}
-<div class="container">
+<div class="container min-vh-100">
     <div class="row">
     {% for opinion in opinions %}
         {% if opinion.isValid is same as (true) %}
@@ -13,7 +13,6 @@
                     <small>Publié le {{ opinion.createdAt|date("d-m-Y") }}</small>
                 </div>
                 <div class="card-body">
-                    <h4 class="card-title">Light card title</h4>
                     <p class="card-text">{{ opinion.comment }}</p>
                 </div>
                 <div class="card-footer text-muted">

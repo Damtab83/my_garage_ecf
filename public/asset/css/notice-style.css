@@ -1,24 +1,36 @@
-body {
-    box-sizing: border-box;
+/* body {
     margin: 0;
     padding: 0;
-    max-width: 100%;
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    background: #222;
 }
 
-.numberVal input[type="number"] {
-    width: 80px;
+.container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 600px;
+    height: 80px;
+    background: #fff;
+    border-radius: 20px;
+}
+
+.container input[type="number"] {
+    width:50px;
     height: 30px;
     background: #fff;
     border: 1px solid #ddd;
     font-size: 15px;
     font-weight: 700;
     text-align: center;
-    border-radius: 15px;
+    border-radius: 5px;
 }
 
-.container input[type="number"]::-webkit-outer-spin-button
-.container input[type="number"]::-webkit-inner-spin-button{
-    -webkit-appearance: none;
+.container input[type="number"]::-webkit-outer-spin-button,
+.container input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance:none;
 }
 
 .container .range-slider {
@@ -33,29 +45,29 @@ body {
 
 .container .range-slider .progress {
     left: 25%;
-    right: 25%;
+    right:25%;
     height: 100%;
     background: #17a288;
-    border-radius: 20px;
+    border-radius: 50px;
     position: absolute;
 }
 
 .container .range-slider input[type="range"] {
     position: absolute;
-    top: -5px;
+    top: -8px;
     left: -5px;
     width: 101%;
-    -webkit-appearance: none;
+    -webkit-appearance:none;
     pointer-events: none;
     background: none;
     outline: none;
 }
 
-.container .range-slider input::-webkit-slider-thumb {
+.container .range-slider innput::-webkit-slider-thumb {
     pointer-events: auto;
-    -webkit-apparence: none;
+    -webkit-appearance:none;
     width: 17px;
     height: 17px;
     background: #17a288;
     border-radius: 50px;
-}
+} */

@@ -9,9 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class NoticeCrudController extends AbstractCrudController
@@ -35,9 +33,11 @@ class NoticeCrudController extends AbstractCrudController
     {
         $fields = [
             TextField::new('brand')
-                ->setLabel('Marque'),
+                ->setLabel('Marque')
+                ,
             TextField::new('model')
-                ->setLabel('Modèle'),
+                ->setLabel('Modèle')
+                ,
             TextareaField::new('description')
                 ->setLabel('Description')
                 ->hideOnIndex()
@@ -45,17 +45,20 @@ class NoticeCrudController extends AbstractCrudController
             CollectionField::new('noticeImages')
                 ->setLabel('Image')
                 ->hideOnIndex()
-                ->setEntryType(NoticeImageType::class),
-            MoneyField::new('price')
-                ->setLabel('Prix')
-                ->setCurrency('EUR')
-                ->setNumDecimals(0)
+                ->setEntryType(NoticeImageType::class)
+                ,
+            IntegerField::new('price')
+                ->setLabel('Prix en €')
+                ->setThousandsSeparator(' ')
                 ,
             IntegerField::new('kilometer')
-                ->setLabel('Kilomètre'),
+                ->setLabel('Kilomètre')
+                ->setThousandsSeparator(' ')
+                ,
             DateTimeField::new('release_date')
                 ->setLabel('Date d\'immatriculation')
-                ->hideOnIndex(),
+                ->hideOnIndex()
+                ,
             
 
         ];
