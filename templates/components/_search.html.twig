@@ -1,28 +1,25 @@
 {{ form_start(form) }}
-<form>
-  <div class="d-flex justify-content-center align-items-center">
-    <div class="col-md-3 mx-3">
-      <div class="row">
-        {{ form_widget(form.minPrice) }}
-        {{ form_widget(form.maxPrice) }}
-        <div id="price-slider"></div>
-      </div>
-      <div class="row">
-        <div id="price-slider"></div>
-      </div>
+
+  <div>
+    <div class="my-4 d-flex flex-wrap align-content-center justify-content-center">
+      {{ form_widget(form.minPrice) }}
+      {{ form_widget(form.maxPrice) }}
+      <div id="price-slider" class="w-50 mt-2"></div>
     </div>
-    <div class="col-md-3 mx-3">
-      <div class="row">
-        {{ form_widget(form.minKilometer) }}
-        {{ form_widget(form.maxKilometer) }}
-        <div id="kilometer-slider"></div>
-      </div>
-      <div class="row">
-        <div id="price-slider"></div>
-      </div>
+    <div class="my-4 d-flex flex-wrap align-content-center justify-content-center">
+      {{ form_widget(form.minKilometer) }}
+      {{ form_widget(form.maxKilometer) }}
+      <div id="kilometer-slider" class="w-50 mt-2"></div>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <div class="my-4 d-flex flex-wrap align-content-center justify-content-center">
+      {{ form_widget(form.minYear) }}
+      {{ form_widget(form.maxYear) }}
+      <div id="date-slider" class="w-50 mt-2"></div>
+    </div>
+    <div>
+      <button type="submit" class="btn btn-primary mb-3">Rechercher</button>
+    </div>
   </div>
-</form>
+
 {{ form_end(form) }}
 

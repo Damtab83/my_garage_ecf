@@ -2,7 +2,7 @@
 
 namespace App\Model;
 
-use DateTime;
+use DateTimeImmutable;
 
 class Search
 {
@@ -25,5 +25,15 @@ class Search
      * @var null|integer
      */
     public $maxKilometer;
+
+    /**
+     * @var null|?DateTimeImmutable
+     */
+    public $minYear;
+
+    /**
+     * @var null|?DateTimeImmutable
+     */
+    public $maxYear;
 
 }

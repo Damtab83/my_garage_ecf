@@ -3,46 +3,41 @@
 {% block title %}Annonces de voitures occasions
 {% endblock %}
 
-{% block stylesheets %}
-    {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('asset/css/notice-style.css') }}">
-{% endblock %}
-
-{# {% block javascripts %}
-    {{ parent() }}
-    <script src="{{ asset('asset/js/notice-script.js') }}" defer></script>
-    <script src="path/to/nouislider.js" defer></script>
-{% endblock %} #}
-
 {% block body %}
-<div class="container text-center my-3">
-    <div class="row">
-       {% include "components/_search.html.twig" %}
+<div class="row">
+    <div class="col-md-3">
+        <div class="container text-center my-3">
+            <div class="row bg-secondary m-2 rounded">
+            {% include "components/_search.html.twig" %}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="row justify-content-center">
+            {% for notice in notices %}
+                <div class="card mb-3 my-3 mx-4 col-sm-3 mh-50 h-50">
+                    <h3 class="card-header">{{ notice.brand }}</h3>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ notice.model }}</h5>
+                    </div>
+                    <div class="d-block w-100">
+                            <img src="{{ vich_uploader_asset(notice.noticeImages[0], 'file') }}" class="d-block w-100" alt="{{ notice.noticeImages[0].name }}">
+                    </div>
+                    <div class="card-body">
+                        <span class="badge bg-success fs-5">{{ notice.price |number_format(0, ",", " ") }} €</span>
+                    </div>
+                    <div class="card-body">
+                        <a href="{{ path('app_contact', {'source': 'notice'}) }}" class="card-link">Contact</a>
+                        <a href="{{ path('app_notice_details', {'id': notice.id}) }}" class="card-link">en savoir plus...</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Mise en ligne le : {{ notice.createdAt|date("d-m-Y") }}
+                    </div>
+                </div> 
+            {% endfor %}
+
+        </div>
     </div>
 </div>
 
-<div class="row justify-content-center">
-    {% for notice in notices %}
-        <div class="card mb-3 my-3 mx-4 col-sm-3 mh-50 h-50">
-            <h3 class="card-header">{{ notice.brand }}</h3>
-            <div class="card-body">
-                <h5 class="card-title">{{ notice.model }}</h5>
-            </div>
-            <div class="d-block w-100">
-                     <img src="{{ vich_uploader_asset(notice.noticeImages[0], 'file') }}" class="d-block w-100" alt="{{ notice.noticeImages[0].name }}">
-            </div>
-            <div class="card-body">
-                <span class="badge bg-success fs-5">{{ notice.price |number_format(0, ",", " ") }} €</span>
-            </div>
-            <div class="card-body">
-                <a href="{{ path('app_contact', {'source': 'notice'}) }}" class="card-link">Contact</a>
-                <a href="{{ path('app_notice_details', {'id': notice.id}) }}" class="card-link">en savoir plus...</a>
-            </div>
-            <div class="card-footer text-muted">
-                Mise en ligne le : {{ notice.createdAt|date("d-m-Y") }}
-            </div>
-        </div> 
-    {% endfor %}
-
-</div>
 {% endblock %}

@@ -53,6 +53,18 @@ class NoticeRepository extends ServiceEntityRepository
                 ->setParameter('maxK', $search->maxKilometer);
         }
 
+        if (!empty($search->minYear)) {
+            $minYearExpression = $query->expr()->literal($search->minYear);
+            $query = $query
+                ->andWhere('SUBSTRING(n.releaseDate, 1, 4) >= ' . $minYearExpression);
+        }
+
+        if (!empty($search->maxYear)) {
+            $maxYearExpression = $query->expr()->literal($search->maxYear);
+            $query = $query
+                ->andWhere('SUBSTRING(n.releaseDate, 1, 4) <= ' . $maxYearExpression);
+        }
+
     
         
         return $query->getQuery()->getResult();

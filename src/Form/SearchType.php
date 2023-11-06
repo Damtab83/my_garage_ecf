@@ -41,6 +41,20 @@ class SearchType extends AbstractType
                 'placeholder' => 'Kilométrage maxi',
             ],
         ])
+        ->add('minYear', IntegerType::class, [
+            'label' => false,
+            'required' => false,
+            'attr' => [
+                'placeholder' => 'Date mini',
+            ],
+        ])
+        ->add('maxYear', IntegerType::class, [
+            'label' => false,
+            'required' => false,
+            'attr' => [
+                'placeholder' => 'Date maxi',
+            ],
+        ])
         ;
     }
 

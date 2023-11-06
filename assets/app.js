@@ -6,6 +6,7 @@ import './styles/app.css';
 import noUiSlider from 'nouislider';
 import 'nouislider/dist/nouislider.css';
 
+//Search Price Slider
 const priceSlider = document.getElementById('price-slider');
 if(priceSlider) {
     const minPrice = document.getElementById('minPrice');
@@ -30,8 +31,9 @@ if(priceSlider) {
     })
 }
 
+//Search Kilometer Slider
 const kilometerSlider = document.getElementById('kilometer-slider');
-if(priceSlider) {
+if(kilometerSlider) {
     const minKilometer = document.getElementById('minKilometer');
     const maxKilometer = document.getElementById('maxKilometer');
     const kilometerRange = noUiSlider.create(kilometerSlider, {
@@ -49,6 +51,31 @@ if(priceSlider) {
         }
         if(handle === 1) {
             maxKilometer.value = Math.round(values[1])
+        }
+        console.log(values, handle);
+    })
+}
+
+//Search Year Slider
+const dateSlider = document.getElementById('date-slider');
+if(dateSlider) {
+    const minYear = document.getElementById('minYear');
+    const maxYear = document.getElementById('maxYear');
+    const yearRange = noUiSlider.create(dateSlider, {
+        start: [minYear.value || 2000, maxYear.value || 2030],
+        connect: true,
+        step: 1,
+        range: {
+            'min': 2000,
+            'max':2030
+        }
+    });
+    yearRange.on('slide', function(values, handle) {
+        if(handle === 0) {
+            minYear.value = Math.round(values[0])
+        }
+        if(handle === 1) {
+            maxYear.value = Math.round(values[1])
         }
         console.log(values, handle);
     })
