@@ -22,6 +22,6 @@ class LoginController extends AbstractController
     #[Route('/app_logout', name: 'app_logout')]
     public function logout(): Response
     {
-        return $this->redirectToRoute('app_login');
+        return $this->redirectToRoute('app_home');
     }
 }

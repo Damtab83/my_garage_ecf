@@ -45,15 +45,15 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Services', 'fas fa-screwdriver-wrench', Service::class),
             MenuItem::linkToCrud('Images des Services', 'fas fa-images', ServiceImage::class),
         ])
-            // ->setPermission('ROLE_ADMIN')
+            ->setPermission('ROLE_ADMIN')
             ;
         yield MenuItem::linkToCrud('Demande de contacts', 'fas fa-envelope', Contact::class);
         yield MenuItem::linkToCrud('Avis clients', 'fas fa-newspaper', Opinion::class);
         yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-users', User::class)
-            // ->setPermission('ROLE_ADMIN')
+            ->setPermission('ROLE_ADMIN')
             ;
         yield MenuItem::linkToCrud('Horaires', 'fas fa-clock', OpeningHours::class)
-            // ->setPermission('ROLE_ADMIN')
+            ->setPermission('ROLE_ADMIN')
             ;
         yield MenuItem::section();
         yield MenuItem::linkToUrl('Retour au site', 'fas fa-reply-all', '/');
