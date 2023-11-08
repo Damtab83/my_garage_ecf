@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for my-garage-parrot on 2023-11-07T16:54:58+01:00
+# fly.toml app configuration file generated for my-garage-parrot on 2023-11-08T15:13:10+01:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -14,7 +14,7 @@ primary_region = "cdg"
 [http_service]
   internal_port = 8080
   force_https = true
-  auto_stop_machines = true
+  auto_stop_machines = false
   auto_start_machines = true
   min_machines_running = 0
   processes = ["app"]
