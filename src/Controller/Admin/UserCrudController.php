@@ -32,8 +32,7 @@ class UserCrudController extends AbstractCrudController
             IdField::new('id')
                 ->hideOnForm(),
             TextField::new('fullname')
-                ->setLabel('Nom Prénom')
-                ->setDisabled(true),
+                ->setLabel('Nom Prénom'),
             EmailField::new('email')
                 ->setLabel('Email'),
             ChoiceField::new('roles')
