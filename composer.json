@@ -85,7 +85,8 @@
         ],
         "compile": [
             "php bin/console doctrine:migrations:migrate"
-        ]
+        ],
+        "encore": "encore"
     },
     "conflict": {
         "symfony/symfony": "*"
