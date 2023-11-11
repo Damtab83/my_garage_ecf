@@ -3,7 +3,7 @@
 
 Ce projet a été conçu dans le cadre du Titre Professionnel de Dévoleppeur Web et Web Mobile.  
 
-## Suite à un problème technique l'adresse du site à changer: [ECF-Garage]((https://my-ecf-garage-6872b36ba218.herokuapp.com/))
+## Suite à un problème technique l'adresse du site à changer: [ECF-Garage](https://my-ecf-garage-6872b36ba218.herokuapp.com/)
 
 ## Installation pour serveur local  
 
