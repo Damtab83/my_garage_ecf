@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div class"row bg-info border border-info">
-                {% if latest_opinion %}
+                {% if latest_opinion and opinion.isValid %}
                     <div class="card border-info my-3" style="max-width: 20rem;">
                         <div class="card-header">{{ latest_opinion.fullname }}</div>
                         <div class="card-body">
