@@ -77,7 +77,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $roles = $this->roles;
         $roles[] = ['ROLE_ADMIN'];
-        $roles[] = ['ROLE_SELLER'];
 
         return array_unique($roles);
     }
