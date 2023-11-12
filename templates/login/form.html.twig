@@ -1,6 +1,4 @@
-{% block stylesheet %}
-    <link rel="stylesheet" href="asset\css\styles_surcharges.css">
-{% endblock %}
+
 <form action="{{ path('app_login') }}" method="post">
     <label for="username" class="header_text">Email:</label>
     <input type="text" id="username" name="_username" value="{{ last_username|default('')}}">
