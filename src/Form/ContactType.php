@@ -96,11 +96,11 @@ class ContactType extends AbstractType
                     'class' => 'btn btn-primary my-4',
                 ],
                 'label' => 'Envoyer'
-            ])
-            ->add('captcha', Recaptcha3Type::class, [
-                'constraints' => new ReCaptcha3(),
-                'action_name' => 'contact',
             ]);
+            // ->add('captcha', Recaptcha3Type::class, [
+            //     'constraints' => new ReCaptcha3(),
+            //     'action_name' => 'contact',
+            // ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
