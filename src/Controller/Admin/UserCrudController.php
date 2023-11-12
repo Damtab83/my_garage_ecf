@@ -37,7 +37,6 @@ class UserCrudController extends AbstractCrudController
                 ->setLabel('Email'),
             ChoiceField::new('roles')
                 ->setLabel('Statut  de l\'employé')
-                ->setLabel('Roles')
                 ->setChoices([
                     'Admin' => 'ROLE_ADMIN',
                     'Vendeur' => 'ROLE_SELLER',
