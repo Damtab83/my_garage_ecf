@@ -76,9 +76,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        if (empty($roles)) {
-            $roles[] = 'ROLE_SELLER';
-        }
+        $roles[] = ['ROLE_SELLER'];
 
         return array_unique($roles);
     }
