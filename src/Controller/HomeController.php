@@ -21,5 +21,15 @@ class HomeController extends AbstractController
             'average_rating' => $averageRating,
         ]);
     }
+
+
+    #[Route('/*', name: 'app_error_page')]
+    public function errorPage(): Response
+    {
+        
+        return $this->render('home/index.html.twig', [
+            'controller_name' => 'HomeController',
+        ]);
+    }
     
 }
