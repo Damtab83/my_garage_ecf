@@ -78,7 +78,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $roles = $this->roles;
         $roles[] = 'ROLE_ADMIN';
 
-        return array_unique($roles);
+        return $roles;
     }
 
     public function setRoles(array $roles): static
