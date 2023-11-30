@@ -83,6 +83,9 @@
         "post-update-cmd": [
             "@auto-scripts"
         ],
+        "symfony-scripts": [
+            "php bin/console"
+        ],
         "compile": [
             "php bin/console doctrine:migrations:migrate"
         ]
