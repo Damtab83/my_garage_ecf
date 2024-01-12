@@ -27,7 +27,7 @@ class HomeController extends AbstractController
     public function errorPage(): Response
     {
         
-        return $this->render('home/index.html.twig', [
+        return $this->render('home/error404.html.twig', [
             'controller_name' => 'HomeController',
         ]);
     }
