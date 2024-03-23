@@ -45,14 +45,14 @@ class SearchType extends AbstractType
             'label' => false,
             'required' => false,
             'attr' => [
-                'placeholder' => 'Date mini',
+                'placeholder' => 'Mise en circulation mini',
             ],
         ])
         ->add('maxYear', IntegerType::class, [
             'label' => false,
             'required' => false,
             'attr' => [
-                'placeholder' => 'Date maxi',
+                'placeholder' => 'Mise en circulation maxi',
             ],
         ])
         ;

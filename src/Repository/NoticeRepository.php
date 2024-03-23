@@ -65,8 +65,6 @@ class NoticeRepository extends ServiceEntityRepository
                 ->andWhere('SUBSTRING(n.releaseDate, 1, 4) <= ' . $maxYearExpression);
         }
 
-    
-        
         return $query->getQuery()->getResult();
     }
 

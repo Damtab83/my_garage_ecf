@@ -6,9 +6,11 @@ use App\Model\Search;
 use App\Form\SearchType;
 use App\Repository\NoticeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 
 #[Route('/notice')]
 class NoticeController extends AbstractController
@@ -21,14 +23,17 @@ class NoticeController extends AbstractController
         $form->handleRequest($request);
         
         $notices = $noticeRepository->findBySearch($search);
+        if ($request->get('ajax')) {
+            return new JsonResponse([
+                'content' => $this->renderView('notice/_notice.html.twig', ['notices' => $notices])
+            ]);
+        }
        
         return $this->render('notice/index.html.twig', [
             'form' => $form->createView(),
             'notices' => $notices,
         ]);
-        
     }
-
 
     #[Route('/{id}', name: 'app_notice_details', methods: ['GET'], requirements: ['id' => '\d+'])]
     public function details(NoticeRepository $noticeRepository, int $id): Response
